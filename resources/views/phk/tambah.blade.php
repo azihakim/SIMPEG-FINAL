@@ -12,7 +12,7 @@
             <h3 class="card-title">Form Tambah PHK</h3>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="{{ route('phk.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-sm-6">
