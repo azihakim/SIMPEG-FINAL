@@ -67,9 +67,18 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-divider"></div>
-          <a href="{{ url('login') }}" class="dropdown-item">
+          {{-- <a href="{{ url('login') }}" class="dropdown-item">
             <i class="fas fa-exit mr-2"></i>LogOut
-          </a>
+          </a> --}}
+          <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link class="dropdown-item" :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-dropdown-link>
+            </form>
         </div>
       </li>
       
