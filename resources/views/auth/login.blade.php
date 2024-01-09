@@ -73,13 +73,13 @@
       <form action="{{ route('login') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input name="email" type="text" class="form-control" placeholder="Username">
+          <input name="username" type="text" class="form-control" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
-          <x-input-error :messages="$errors->get('email')" class="mt-2" />
+          {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
 
         </div>
         <div class="input-group mb-3">

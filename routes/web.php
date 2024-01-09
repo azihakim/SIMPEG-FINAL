@@ -12,6 +12,8 @@ use App\Http\Controllers\PhkController;
 use App\Http\Controllers\PromosiController;
 use App\Http\Controllers\RecruitmentController;
 use App\Http\Controllers\RewardandPunishmentController;
+use App\Models\Recruitment;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,11 +41,13 @@ use App\Http\Controllers\RewardandPunishmentController;
 
 
 
+
 Route::middleware('auth')->group(function () {
 
+    
     Route::get('/', function () {
         return view('dashboard');
-    });
+    })->middleware('checkRole:pelamar');
 
     Route::get('/dashboard-karyawan', function () {
         return view('karyawan.dashboard');
@@ -86,7 +90,7 @@ Route::middleware('auth')->group(function () {
     });
 
 
-    Route::resource('recruitment', RecruitmentController::class);
+    Route::put('/cutiizin/{id}/status', [CutiIzinController::class, 'status'])->name('cutiizin.status');
     
 
     Route::get('/login', function () {
@@ -99,5 +103,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/regist-calonkaryawan', function () {
         return view('recruitment.regist');
     });
+// Route::post('/register', [RecruitmentController::class, 'regist'])->name('register.regist');
+
+Route::resource('recruitment', RecruitmentController::class);
+
 
 require __DIR__.'/auth.php';

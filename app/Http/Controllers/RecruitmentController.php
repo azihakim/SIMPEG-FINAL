@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recruitment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RecruitmentController extends Controller
@@ -14,6 +15,19 @@ class RecruitmentController extends Controller
     {
         // return view('recruitment.dashboard');
         return view('pengajuankerja.dashboard');
+    }
+
+    public function regist(Request $request)
+    {
+        $data = new User();
+        $data->name = $request->name;
+        $data->username = $request->username;
+        $data->password = $request->password;
+        $data->telepon = $request->telepon;
+        $data->role = 'pelamar';
+        $data->save();
+
+        return redirect('/');
     }
 
     /**
@@ -29,7 +43,15 @@ class RecruitmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new User();
+        $data->name = $request->name;
+        $data->username = $request->username;
+        $data->password = $request->password;
+        $data->telepon = $request->telepon;
+        $data->role = 'pelamar';
+        $data->save();
+
+        return redirect('/');
     }
 
     /**
