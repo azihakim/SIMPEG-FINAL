@@ -12,7 +12,8 @@
             <h3 class="card-title">Form Tambah PHK</h3>
         </div>
         <div class="card-body">
-            <form action="{{ route('phk.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('phk.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="row">
                     <div class="col-sm-6">
@@ -26,6 +27,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Surat</label>
+                            <input type="hidden" name="old_file" value="{{ $data->surat }}">
                             <input type="file" class="form-control-file" id="photoInput" name="surat" required>
                         </div>
                     </div>
@@ -34,7 +36,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Alasan</label>
-                            <textarea name="alasan" class="form-control" placeholder="Alasan ..."></textarea>
+                            <textarea name="alasan" class="form-control" placeholder="Alasan ...">{{ $data->alasan }}</textarea>
                         </div>
                     </div>
                 </div>

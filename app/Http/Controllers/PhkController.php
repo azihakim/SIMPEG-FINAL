@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Phk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhkController extends Controller
 {
@@ -12,7 +13,8 @@ class PhkController extends Controller
      */
     public function index()
     {
-        return view('phk.dashboard');
+        $data = Phk::all();
+        return view('phk.dashboard', compact('data'));
     }
 
     /**
@@ -28,7 +30,16 @@ class PhkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Phk();
+        $ext = $request->surat->getClientOriginalExtension();
+        $file = "surat-".time().".".$ext;
+        $request->surat->storeAs('public/dokument', $file);
+        // $data->nama = $request->nama;
+        $data->surat = $file;
+        $data->alasan = $request->alasan;
+        $data->save();
+
+        return redirect()->route('phk.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -42,17 +53,44 @@ class PhkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Phk $phk)
+    public function edit($id)
     {
-        //
+        $data = Phk::find($id);
+        return view('phk.edit', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Phk $phk)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Phk::find($id);
+        $data->alasan = $request->alasan;
+
+        if ($request->hasFile('surat')) {
+            $file = $request->file('surat');
+
+            // If an existing file is present, delete it before uploading the new one
+            if ($data->surat !== null) {
+                Storage::delete('public/dokument/' . $data->surat);
+            }
+
+            $ext = $file->getClientOriginalExtension();
+            $file_name = "Surat-" . time() . "." . $ext;
+            
+            // Store the new file using the Storage facade
+            $file->storeAs('public/dokument', $file_name);
+            
+            $data->surat = $file_name;
+        } else {
+            // No new file uploaded, retain the existing file or use the old file name
+            $data->surat = $request->old_file;
+        }
+
+
+        $data->save();
+
+        return redirect('/phk');
     }
 
     /**

@@ -30,12 +30,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle fas fa-edit" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu" role="menu" style="">
+                                        <a class="dropdown-item" href="{{ route('phk.edit', $item->id) }}">Edit</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td>{{ $item->alasan }}</td>
+                            <td>
+                                <a href="{{ asset('storage/dokument/' . $item->surat) }}" target="_blank" class="btn btn-outline-warning">Cek Surat</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>

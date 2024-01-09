@@ -80,11 +80,16 @@ Route::resource('recruitment', RecruitmentController::class);
 Route::get('/regist-calonkaryawan', function () {
     return view('recruitment.regist');
 });
-Route::get('/pengajuan-calonkaryawan', function () {
-    return view('dataGaji.tambah');
-});
+
+
+
+
 Route::get('/login', function () {
     return view('login');
 });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
 
 
