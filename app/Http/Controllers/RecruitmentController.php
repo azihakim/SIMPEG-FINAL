@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recruitment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecruitmentController extends Controller
 {
@@ -13,7 +14,17 @@ class RecruitmentController extends Controller
      */
     public function index()
     {
-        return view('recruitment.dashboard');
+        if(Auth::user()->role == 'admin'){
+            $data = User::join('recruitments', 'recruitments.user_id', '=', 'users.id')
+            ->get();
+        }
+        else if(Auth::user()->role == 'karyawan'){
+            $userId = Auth::id();
+
+            $data = Recruitment::where('user_id', $userId)->with('users')->get();
+        }
+        // dd($data);
+        return view('recruitment.dashboard', compact('data'));
     }
 
     public function regist(Request $request)
@@ -23,7 +34,9 @@ class RecruitmentController extends Controller
         $data->username = $request->username;
         $data->password = $request->password;
         $data->telepon = $request->telepon;
+        $data->alamat = $request->alamat;
         $data->role = 'pelamar';
+        dd($data);
         $data->save();
 
         return redirect('/');
@@ -47,6 +60,7 @@ class RecruitmentController extends Controller
         $data->username = $request->username;
         $data->password = $request->password;
         $data->telepon = $request->telepon;
+        $data->alamat = $request->alamat;
         $data->role = 'pelamar';
         $data->save();
 
@@ -66,15 +80,19 @@ class RecruitmentController extends Controller
      */
     public function edit(Recruitment $recruitment)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Recruitment $recruitment)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Recruitment::find($id);
+        $data->status = $request->status;
+        
+        $data->save();
+        return redirect()->back()->with('status', 'Berhasil diubah!');
     }
 
     /**

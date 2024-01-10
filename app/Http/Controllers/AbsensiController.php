@@ -88,14 +88,24 @@ class AbsensiController extends Controller
 
     public function filter(Request $request)
     {
-        $bulan = $request->input('bulan');
-        $tahun = $request->input('tahun');
+        $dariTanggal = $request->input('dari_tgl');
+        $hinggaTanggal = $request->input('hingga_tgl');
 
         // Validasi input jika diperlukan
 
-        $absensi = Absensi::whereMonth('created_at', $bulan)
-                        ->whereYear('created_at', $tahun)
-                        ->get();
+        $absensiQuery = Absensi::query();
+
+        if (!empty($dariTanggal) && !empty($hinggaTanggal)) {
+            // Jika dari_tgl dan hingga_tgl diisi, pencarian dengan rentang tanggal
+            $absensiQuery->whereBetween('created_at', [$dariTanggal, $hinggaTanggal]);
+        } elseif (!empty($dariTanggal)) {
+            // Jika hanya dari_tgl diisi, pencarian per hari
+            $absensiQuery->whereDate('created_at', $dariTanggal);
+        } else {
+            // Tidak ada parameter yang diisi, lakukan sesuai kebutuhan Anda
+        }
+
+        $absensi = $absensiQuery->get();
                         
         return view('absensi.dashboard', compact('absensi'));
     }

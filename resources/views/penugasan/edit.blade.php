@@ -19,8 +19,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Karyawan</label>
-                            <select id="pilihan_karyawan" name="karyawan" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
-                                <option></option>
+                            <select disabled id="pilihan_karyawan" name="karyawan" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                                <option>{{ $data->user->name }}</option>
                             </select>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary float-right">Simpan</button>
+                <button type="submit" class="btn btn-lg btn-success float-right">Perbarui</button>
             </form>
         </div>
     </div>

@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label>Upload berkas</label>
                     <br>
-                    <input type="file" class="form-control-file" id="photoInput" name="foto" accept="pdf" required>
+                    <input type="file" class="form-control-file" id="photoInput" name="berkas" accept="pdf" required>
                     <p class="text-danger">Lampirkan Surat Lamaran, CV, Ijazah, KTP, KK, serta dokumen pendukung</p>
                 </div>
               </div>

@@ -26,10 +26,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>
+                                <a href="{{ asset('storage/dokument/' . $item->berkas) }}" target="_blank" class="btn btn-outline-warning">Cek berkas</a>
+                            </td>
+                            <td>{{ $item->created_at }}</td>
+                        </tr>   
+                    @endforeach
                     
                 </tbody>
                 <tfoot>

@@ -23,7 +23,9 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        @if (auth()->user()->role == 'admin')
                         <th></th>
+                        @endif
                         <th>KARYAWAN</th>
                         <th>JABATAN LAMA</th>
                         <th>JABATAN BARU</th>
@@ -34,6 +36,7 @@
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
+                            @if (auth()->user()->role == 'admin')
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle fas fa-edit" data-toggle="dropdown" aria-expanded="false">
@@ -44,7 +47,12 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>KARYAWAN</td>
+                            @endif
+                            @if (auth()->user()->role == 'karyawan')
+                                <td>{{ $item->user->name }}</td>
+                            @else
+                                <td>{{ $item->name }}</td>
+                            @endif
                             <td>{{ $item->jabatan_lama }}</td>
                             <td>{{ $item->jabatan_baru }}</td>
                             <td>{{ $item->tgl_promosi }}</td>
@@ -56,7 +64,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        @if (auth()->user()->role == 'admin')
                         <th></th>
+                        @endif
                         <th>KARYAWAN</th>
                         <th>JABATAN LAMA</th>
                         <th>JABATAN BARU</th>

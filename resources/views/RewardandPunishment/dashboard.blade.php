@@ -10,9 +10,11 @@
                     <div class="col-sm-10">
                         <h2>Reward and Punishment</h2>
                     </div>
+                    @if (auth()->user()->role == 'admin')
                     <div class="col-sm-2">
                         <a type="button" class="btn btn-block btn-outline-primary" href="{{ url('tambah-RewardandPunishment') }}">Tambah Data</a>
                     </div>
+                    @endif
                 </div>
                     
                 {{-- @endif --}}
@@ -23,7 +25,9 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        @if (auth()->user()->role == 'admin')
                         <th></th>
+                        @endif
                         <th>KARYAWAN</th>
                         <th>TAHUN</th>
                         <th>BULAN</th>
@@ -35,6 +39,7 @@
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
+                            @if (auth()->user()->role == 'admin')
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle fas fa-edit" data-toggle="dropdown" aria-expanded="false">
@@ -45,7 +50,12 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>KARYAWAN</td>
+                            @endif
+                            @if (auth()->user()->role == 'karyawan')
+                                <td>{{ $item->user->name }}</td>
+                            @else
+                                <td>{{ $item->name }}</td>
+                            @endif
                             <td>{{ $item->tahun }}</td>
                             <td>{{ $item->bulan }}</td>
                             <td>Rp.{{ $item->potongan_gaji }}</td>
@@ -60,7 +70,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        @if (auth()->user()->role == 'admin')
                         <th></th>
+                        @endif
                         <th>KARYAWAN</th>
                         <th>TAHUN</th>
                         <th>BULAN</th>

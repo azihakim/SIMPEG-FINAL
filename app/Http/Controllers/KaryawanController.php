@@ -17,12 +17,13 @@ class KaryawanController extends Controller
     }
     public function dashboard()
     {
-        return view('dashboard');
+        $karyawan = Karyawan::all();
+        return view('dashboard', compact('karyawan'));
     }
-    public function admin()
-    {
-        return view('dashboard');
-    }
+    // public function admin()
+    // {
+    //     return view('dashboard');
+    // }
 
     /**
      * Show the form for creating a new resource.

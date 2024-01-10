@@ -42,7 +42,11 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            @if (auth()->user()->role == 'karyawan')
+                                <td>{{ $item->user->name }}</td>
+                            @else
+                                <td>{{ $item->name }}</td>
+                            @endif
                             <td>{{ $item->alasan }}</td>
                             <td>
                                 <a href="{{ asset('storage/dokument/' . $item->surat) }}" target="_blank" class="btn btn-outline-warning">Cek Surat</a>

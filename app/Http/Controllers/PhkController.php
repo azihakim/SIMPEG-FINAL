@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Phk;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PhkController extends Controller
@@ -13,7 +15,15 @@ class PhkController extends Controller
      */
     public function index()
     {
-        $data = Phk::all();
+        if(Auth::user()->role == 'admin'){
+            $data = User::join('phks','phks.user_id','=', 'users.id')->get();
+
+        }
+        else if(Auth::user()->role == 'karyawan'){
+            $userId = Auth::id();
+
+            $data = Phk::where('user_id', $userId)->with('user')->get();
+        }
         return view('phk.dashboard', compact('data'));
     }
 
@@ -22,7 +32,8 @@ class PhkController extends Controller
      */
     public function create()
     {
-        //
+        $data = User::all();
+        return view('phk.tambah', compact('data'));
     }
 
     /**
@@ -35,6 +46,7 @@ class PhkController extends Controller
         $file = "surat-".time().".".$ext;
         $request->surat->storeAs('public/dokument', $file);
         // $data->nama = $request->nama;
+        $data->user_id = $request->user_id;
         $data->surat = $file;
         $data->alasan = $request->alasan;
         $data->save();

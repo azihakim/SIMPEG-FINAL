@@ -3,9 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CutiIzinController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\KaryawanloginController;
 use App\Http\Controllers\PelamarController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PenugasanController;
@@ -52,62 +54,58 @@ Route::middleware(['auth','checkRole:pelamar'])->group(function()
     Route::resource('pengajuan', PelamarController::class);
     
 });
-// Route::middleware(['auth','checkRole:admin'])->group(function () {
-
-//     // if (Route::middleware(['auth','checkRole:karyawan'])) {
-//     //     Route::get('/', function () {
-//     //         return view('dashboard');
-//     //     });
-//     // }
-
-//     Route::get('/dashboard-karyawan', function () {
-//         return view('karyawan.dashboard');
-//     });
 
 
-//     Route::resource('karyawan', KaryawanController::class);
-//     Route::get('/tambah-karyawan', function () {
-//         return view('karyawan.tambah');
-//     });
-//     Route::put('/karyawan/{id}/status', [KaryawanController::class, 'status'])->name('karyawan.status');
+    // if (Route::middleware(['auth','checkRole:karyawan'])) {
+    //     Route::get('/', function () {
+    //         return view('dashboard');
+    //     });
+    // }
 
-//     Route::resource('absensi', AbsensiController::class);
-//     Route::get('absensi-filter', [AbsensiController::class, 'filter'])->name('absensi.filter');
+    Route::get('/dashboard-karyawan', function () {
+        return view('karyawan.dashboard');
+    });
 
-//     Route::resource('phk', PhkController::class);
-//     Route::get('/tambah-phk', function () {
-//         return view('phk.tambah');
-//     });
 
-//     Route::resource('cutiizin', CutiIzinController::class);
-//     Route::get('/tambah-cutiizin', function () {
-//         return view('cutiizin.tambah');
-//     });
-//     Route::put('/cutiizin/{id}/status', [CutiIzinController::class, 'status'])->name('cutiizin.status');
+    Route::resource('karyawan', KaryawanController::class);
+    Route::get('/tambah-karyawan', function () {
+        return view('karyawan.tambah');
+    });
+    Route::put('/karyawan/{id}/status', [KaryawanController::class, 'status'])->name('karyawan.status');
 
-//     Route::resource('reward-punishment', RewardandPunishmentController::class);
-//     // Route::get('/tambah-RewardandPunishment', [RewardandPunishmentController::class, 'create']);
+    Route::resource('absensi', AbsensiController::class);
+    Route::get('absensi-filter', [AbsensiController::class, 'filter'])->name('absensi.filter');
 
-//     Route::resource('penugasan', PenugasanController::class);
-//     // Route::get('/tambah-penugasan', function () {
-//     //     return view('penugasan.tambah');
-//     // });
-//     Route::get('/tambah-penugasan', [PenugasanController::class, 'create']);
+    Route::resource('phk', PhkController::class);
+    Route::get('/tambah-phk', [PhkController::class, 'create']);
+
+
+    Route::resource('cutiizin', CutiIzinController::class);
+    Route::get('/tambah-cutiizin', function () {
+        return view('cutiizin.tambah');
+    });
+    Route::put('/cutiizin/{id}/status', [CutiIzinController::class, 'status'])->name('cutiizin.status');
+
+    Route::resource('reward-punishment', RewardandPunishmentController::class);
+    Route::get('/tambah-RewardandPunishment', [RewardandPunishmentController::class, 'create']);
+
+    Route::resource('penugasan', PenugasanController::class);
+    // Route::get('/tambah-penugasan', function () {
+    //     return view('penugasan.tambah');
+    // });
+    Route::get('/tambah-penugasan', [PenugasanController::class, 'create']);
     
-//     Route::resource('promosi', PromosiController::class);
-//     Route::get('/tambah-promosi', function () {
-//         return view('promosi.tambah');
-//     });
+    Route::resource('promosi', PromosiController::class);
+    Route::get('/tambah-promosi', [PromosiController::class, 'create']);
 
 
-//     Route::put('/cutiizin/{id}/status', [CutiIzinController::class, 'status'])->name('cutiizin.status');
+    Route::put('/cutiizin/{id}/status', [CutiIzinController::class, 'status'])->name('cutiizin.status');
     
 
-//     Route::get('/login', function () {
-//         return view('login');
-//     });
+    Route::get('/login', function () {
+        return view('login');
+    });
     
-// });
 // Route::middleware(['auth','checkRole:karyawan'])->group(function () {
 
 //     // if (Route::middleware(['auth','checkRole:karyawan'])) {
@@ -172,33 +170,42 @@ Route::get('/regist-calonkaryawan', function () {
 
 Route::resource('recruitment', RecruitmentController::class);
 
-Route::resource('karyawan', KaryawanController::class);
 
-Route::get('/dashboard', function () {
+
+// Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('karyawan.admin');
+    
+// Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('karyawan.dashboard');
+Route::resource('karyawan', KaryawanController::class);
+Route::resource('karyawanlogin', KaryawanloginController::class);
+Route::resource('admin', AdminController::class);
+Route::middleware(['auth'])->group(function () {
+    // Route untuk pelamar
+    Route::get('/dashboard', function () {
+        if (Auth::user()->role === 'pelamar') {
+            return redirect()->route('pengajuan.index');
+        }
         return view('dashboard');
-    })->name('karyawan.admin');
-Route::get('/dashboard', function () {
-        return view('dashboard');
+    })->name('pengajuan.index');
+
+    // Route untuk karyawan
+    Route::get('/dashboard', function () {
+        if (Auth::user()->role === 'karyawan') {
+            return redirect()->route('karyawanlogin.index');
+        }
+        return redirect()->route('dashboard');
     })->name('karyawan.dashboard');
 
-    
-Route::middleware(['auth'])->group(function () {
-    if (Auth::check()) {
-    $userRole = Auth::user()->role;
-
-    switch ($userRole) {
-        case 'pelamar':
-            return redirect()->route('pengajuan.index');
-        case 'karyawan':
-            return redirect()->route('karyawan.dashboard');
-        case 'admin':
-            return redirect()->route('karyawan.admin');
-        default:
-            // Tambahkan logika default jika diperlukan
-            break;
-    }
-}
-
+    // Route untuk admin
+    Route::get('/dashboard', function () {
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.index');
+        }
+        return view('dashboard');
+    })->name('karyawan.admin');
 });
 
 require __DIR__.'/auth.php';

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promosi;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PromosiController extends Controller
@@ -13,7 +15,15 @@ class PromosiController extends Controller
      */
     public function index()
     {
-        $data = Promosi::all();
+        if(Auth::user()->role == 'admin'){
+            $data = User::join('promosis','promosis.user_id','=', 'users.id')->get();
+
+        }
+        else if(Auth::user()->role == 'karyawan'){
+            $userId = Auth::id();
+
+            $data = Promosi::where('user_id', $userId)->with('user')->get();
+        }
         return view('promosi.dashboard', compact('data'));
     }
 
@@ -22,7 +32,8 @@ class PromosiController extends Controller
      */
     public function create()
     {
-        //
+        $data = User::all();
+        return view('promosi.tambah', compact('data'));
     }
 
     /**
@@ -35,6 +46,7 @@ class PromosiController extends Controller
         $request->surat_rekomendasi->storeAs('public/dokument', $file);
 
         $data =new Promosi();
+        $data->user_id = $request->user_id;
         $data->tgl_promosi = $request->tgl_promosi;
         $data->jabatan_lama = $request->jabatan_lama;
         $data->jabatan_baru = $request->jabatan_baru;

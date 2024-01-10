@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Recruitment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PelamarController extends Controller
 {
     public function index()
     {
-        return view('pengajuankerja.dashboard');
+        if(Auth::user()->role == 'admin'){
+            $data = Recruitment::all();
+        }
+        else if(Auth::user()->role == 'pelamar'){
+            $userId = Auth::id();
+
+            $data = Recruitment::where('user_id', $userId)->with('users')->get();
+        }
+        return view('pengajuankerja.dashboard', compact('data'));
     }
     public function store(Request $request)
     {
@@ -25,6 +34,6 @@ class PelamarController extends Controller
         $data->berkas = $file;
         $data->save();
 
-        return redirect('/');
+        return redirect()->route('pengajuan.index')->with('success', 'Data berhasil ditambahkan');
     }
 }

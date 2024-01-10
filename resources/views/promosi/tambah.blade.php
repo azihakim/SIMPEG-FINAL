@@ -18,8 +18,11 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Karyawan</label>
-                            <select id="pilihan_karyawan" name="karyawan" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                            <select id="pilihan_karyawan" name="user_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
                                 <option></option>
+                                @foreach ($data as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -42,9 +45,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Surat</label>
-                            <div class="custom-file">
-                                <input name="surat_rekomendasi" type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Upload Surat</label>
+                            <div class="">
+                                <input name="surat_rekomendasi" type="file" class="-input" id="customFile">
                             </div>
                         </div>
                     </div>

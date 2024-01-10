@@ -35,13 +35,13 @@ class AuthenticatedSessionController extends Controller
         if (Auth::user()->role === 'pelamar') {
             return redirect()->route('pengajuan.index');
         } elseif (Auth::user()->role === 'karyawan') {
-            return redirect()->route('karyawan.dashboard');
+            return redirect()->route('karyawanlogin.index');
         } elseif (Auth::user()->role === 'admin') {
-            return redirect()->route('karyawan.admin');
+            return redirect()->route('admin.index');
         } 
-        // else {
-        //     return redirect()->intended(RouteServiceProvider::HOME);
-        // }
+        else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 
     /**

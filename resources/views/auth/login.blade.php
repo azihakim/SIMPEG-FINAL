@@ -100,8 +100,8 @@
         </div>
       </form>
       <br>
-      <a href="{{ route('register') }}" class="text-center">
-        Klik untuk mendaftar calon karyawan!</a>
+      {{-- <a href="{{ route('register') }}" class="text-center">
+        Klik untuk mendaftar calon karyawan!</a> --}}
 
       <a href="{{ url('/regist-calonkaryawan') }}" class="text-center">Klik untuk mendaftar calon karyawan!</a>
     </div>

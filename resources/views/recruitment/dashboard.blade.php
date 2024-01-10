@@ -30,7 +30,48 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle fas fa-edit" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu" role="menu" style="">
+                                        {{-- <a class="dropdown-item" href="{{ route('karyawan.edit', $item->id) }}">Edit</a> --}}
+                                        <form action="{{ route('recruitment.update', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="Diterima">
+                                            <button class="dropdown-item" type="submit">Diterima</button>
+                                        </form>
+
+                                        <form action="{{ route('recruitment.update', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="Ditolak">
+                                            <button class="dropdown-item" type="submit">Ditolak</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                @if ($item->status == 'Diterima')
+                                    <span class="badge bg-success">Diterima</span>
+                                @elseif($item->status == 'Ditolak')
+                                    <span class="badge bg-danger">Ditolak</span>
+                                @else
+                                    <span class="badge bg-warning">Pending</span>
+                                @endif
+                            </td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->telepon }}</td>
+                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->berkas }}</td>
+                            <td>{{ $item->created_at }}</td>
+                        </tr>
+                    @endforeach
+                    {{-- <tr>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle fas fa-edit" data-toggle="dropdown" aria-expanded="false">
@@ -49,7 +90,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                    </tr>
+                    </tr> --}}
                     
                 </tbody>
                 <tfoot>

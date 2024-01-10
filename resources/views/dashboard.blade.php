@@ -4,13 +4,42 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            @if(auth()->user()->role == 'karyawan')
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Aktif</h3>
+
+                    <p>Status Karyawan</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>Karyawan</h3>
+
+                    <p>Jabatan</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                </div>
+            </div>
+            @else
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>15</h3>
 
-                        <p>New Orders</p>
+                        <p>Jumlah Karyawan</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -20,51 +49,24 @@
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                        <h3>25</h3>
 
-                        <p>Bounce Rate</p>
+                        <p>Jumlah Pelamar</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3>44</h3>
-
-                        <p>User Registrations</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                    <div class="inner">
-                        <h3>65</h3>
-
-                        <p>Unique Visitors</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    </div>
-                </div>
-            <!-- ./col -->
-            </div>
+            @endif
+        <!-- ./col -->
+        </div>
         <div class="card">
             <div class="card-header">
                 <div class="row">
-
+                    <h1>DASHBOARD SIMPEG</h1>
                 </div>
             </div>
         </div>
