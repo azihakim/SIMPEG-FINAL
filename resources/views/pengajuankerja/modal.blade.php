@@ -8,7 +8,7 @@
                 <span aria-hidden="true">×</span>
               </button>
             </div>
-            <form action="{{ route("recruitment.store") }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route("pengajuan.store") }}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
                 <div class="form-group">

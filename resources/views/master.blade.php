@@ -63,7 +63,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-user"></i>&nbsp;&nbsp;<strong>Admin</strong>
+          <i class="far fa-user"></i>&nbsp;&nbsp;<strong>{{ Auth::user()->name }} - {{ Auth::user()->role }}</strong>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-divider"></div>
@@ -106,60 +106,90 @@
                                 <p>Dashboard</p>
                             </a>
                         </li> --}}
-                        <li class="nav-item">
-                            <a href="{{ url('recruitment') }}" class="nav-link">
-                                <i class="nav-icon fas fa-user-plus"></i>
-                                <p>Pengajuan Kerja</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('recruitment') }}" class="nav-link">
-                                <i class="nav-icon fas fa-user-plus"></i>
-                                <p>Recruitment</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('karyawan') }}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>Karyawan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('absensi') }}" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
-                                <p>Absensi</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('cutiizin') }}" class="nav-link">
-                                <i class="nav-icon fas fa-exclamation-triangle"></i>
-                                <p>Pengajuan Cuti/Izin</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('reward-punishment') }}" class="nav-link">
-                                <i class="nav-icon fas fa-star"></i>
-                                <p>Reward and Punishment</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('penugasan') }}" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>Penugasan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('promosi') }}" class="nav-link">
-                                <i class="nav-icon fas fa-bullhorn"></i>
-                                <p>Promosi</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('phk') }}" class="nav-link">
-                                <i class="nav-icon fas fa-user-minus"></i>
-                                <p>PHK</p>
-                            </a>
-                        </li>
+                        @if (auth()->user()->role == 'pelamar')
+                            <li class="nav-item">
+                                <a href="{{ url('pengajuan') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-plus"></i>
+                                    <p>Pengajuan Kerja</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->role == 'admin')
+                            <li class="nav-item">
+                                <a href="{{ url('recruitment') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-plus"></i>
+                                    <p>Recruitment</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('karyawan') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>Karyawan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('absensi') }}" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>Absensi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('cutiizin') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-exclamation-triangle"></i>
+                                    <p>Pengajuan Cuti/Izin</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('reward-punishment') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-star"></i>
+                                    <p>Reward and Punishment</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('penugasan') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>Penugasan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('promosi') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-bullhorn"></i>
+                                    <p>Promosi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('phk') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-minus"></i>
+                                    <p>PHK</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->role == 'karyawan')
+                            <li class="nav-item">
+                                <a href="{{ url('absensi') }}" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>Absensi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('cutiizin') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-exclamation-triangle"></i>
+                                    <p>Pengajuan Cuti/Izin</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('reward-punishment') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-star"></i>
+                                    <p>Reward and Punishment</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('penugasan') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>Penugasan</p>
+                                </a>
+                            </li>
+                        @endif
                         
                         {{-- @endif --}}
                         

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('rewardand_punishments', function (Blueprint $table) {
             $table->id();
-            // $table->string('id_user');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('tahun');
             $table->string('bulan');
             $table->string('potongan_gaji')->nullable();

@@ -66,6 +66,7 @@
                 <thead>
                     <tr>
                         <th>NAMA</th>
+                        <th>LOKASI</th>
                         <th>ABSEN</th>
                         <th>TANGGAL</th>
                         <th>FOTO</th>
@@ -74,7 +75,8 @@
                 <tbody>
                     @foreach ($absensi as $item)
                         <tr>
-                            <td></td>
+                            <td>{{ $item->user->name }}</td>
+                            <td>{{ $item->lokasi }}</td>
                             <td>{{ $item->jenis }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>
@@ -86,6 +88,7 @@
                 <tfoot>
                     <tr>
                         <th>NAMA</th>
+                        <th>LOKASI</th>
                         <th>ABSEN</th>
                         <th>TANGGAL</th>
                         <th>FOTO</th>

@@ -15,6 +15,14 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::all();
         return view('karyawan.dashboard', compact('karyawan'));
     }
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
+    public function admin()
+    {
+        return view('dashboard');
+    }
 
     /**
      * Show the form for creating a new resource.

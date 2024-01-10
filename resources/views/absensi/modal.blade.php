@@ -27,6 +27,10 @@
                     <label class="form-check-label">Pulang</label>
                   </div>
                 </div>
+                <div class="form-group">
+                    <label>Lokasi</label>
+                    <input type="text" class="form-control" name="lokasi" placeholder="Masukkan lokasi">
+                </div>
               </div>
             
             <div class="modal-footer justify-content-between">

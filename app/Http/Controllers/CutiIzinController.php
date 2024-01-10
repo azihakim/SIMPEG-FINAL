@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\cutiIzin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CutiIzinController extends Controller
 {
@@ -12,7 +13,15 @@ class CutiIzinController extends Controller
      */
     public function index()
     {
-        $data = cutiIzin::all();
+        if(Auth::user()->role == 'admin'){
+            $data = cutiIzin::all();
+        }
+        else if(Auth::user()->role == 'karyawan'){
+            $userId = Auth::id();
+
+            $data = cutiIzin::where('user_id', $userId)->with('user')->get();
+        }
+        
         return view('cutiizin.dashboard', compact('data'));
     }
 
@@ -42,6 +51,7 @@ class CutiIzinController extends Controller
         $request->surat->storeAs('public/dokument', $file);
 
         $data = new cutiIzin();
+        $data->user_id = auth()->user()->id;
         $data->keterangan = $request->keterangan;
         $data->alasan = $request->alasan;
         $data->status = 'Pending';

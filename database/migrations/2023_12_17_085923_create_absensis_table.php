@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
-            // $table->string('id_user');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('lokasi');
             $table->string('jenis');
             $table->string('foto');
             $table->timestamps();

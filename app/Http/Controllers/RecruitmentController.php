@@ -13,8 +13,7 @@ class RecruitmentController extends Controller
      */
     public function index()
     {
-        // return view('recruitment.dashboard');
-        return view('pengajuankerja.dashboard');
+        return view('recruitment.dashboard');
     }
 
     public function regist(Request $request)

@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Recruitment extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'status',
+        'berkas',
+    ];
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

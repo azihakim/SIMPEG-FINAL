@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penugasan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenugasanController extends Controller
 {
@@ -12,7 +14,14 @@ class PenugasanController extends Controller
      */
     public function index()
     {
-        $data = Penugasan::all();
+        if(Auth::user()->role == 'admin'){
+            $data = Penugasan::all();
+        }
+        else if(Auth::user()->role == 'karyawan'){
+            $userId = Auth::id();
+
+            $data = Penugasan::where('user_id', $userId)->with('user')->get();
+        }
         return view('penugasan.dashboard', compact('data'));
     }
 
@@ -21,7 +30,8 @@ class PenugasanController extends Controller
      */
     public function create()
     {
-        //
+        $data = User::all();
+        return view('penugasan.tambah', compact('data'));
     }
 
     /**
@@ -30,6 +40,7 @@ class PenugasanController extends Controller
     public function store(Request $request)
     {
         $data = new Penugasan();
+        $data->user_id = $request->user_id;
         $data->tempat_penugasan = $request->tempat_penugasan;
         $data->dari_tgl = $request->dari_tgl;
         $data->hingga_tgl = $request->hingga_tgl;

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\RewardandPunishment;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RewardandPunishmentController extends Controller
 {
@@ -12,7 +14,14 @@ class RewardandPunishmentController extends Controller
      */
     public function index()
     {
-        $data = RewardandPunishment::all();
+        if(Auth::user()->role == 'admin'){
+            $data = RewardandPunishment::all();
+        }
+        else if(Auth::user()->role == 'karyawan'){
+            $userId = Auth::id();
+
+            $data = RewardandPunishment::where('user_id', $userId)->with('user')->get();
+        }
         return view('RewardandPunishment.dashboard', compact('data'));
     }
 
@@ -21,7 +30,8 @@ class RewardandPunishmentController extends Controller
      */
     public function create()
     {
-        //
+        $data = User::all();
+        return view('RewardandPunishment.tambah', compact('data'));
     }
 
     /**
@@ -30,6 +40,7 @@ class RewardandPunishmentController extends Controller
     public function store(Request $request)
     {
         $data = new RewardandPunishment();
+        $data->user_id = $request->user_id;
         $data->tahun = $request->tahun;
         $data->bulan = $request->bulan;
         $data->potongan_gaji = $request->potongan_gaji;
@@ -37,7 +48,7 @@ class RewardandPunishmentController extends Controller
         $data->keterangan = $request->keterangan;
         $data->save();
 
-        return view('RewardandPunishment.dashboard')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/reward-punishment')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**

@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>{{ $item->user->name }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->alasan }}</td>

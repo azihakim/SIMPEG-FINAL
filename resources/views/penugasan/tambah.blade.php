@@ -18,15 +18,18 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Karyawan</label>
-                            <select id="pilihan_karyawan" name="karyawan" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                            <select required id="pilihan_karyawan" name="user_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
                                 <option></option>
+                                @foreach ($data as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Tempat Penugasan</label>
-                            <input type="text" class="form-control" name="tempat_penugasan" placeholder="Masukkan Tempat Penugasan">
+                            <input required type="text" class="form-control" name="tempat_penugasan" placeholder="Masukkan Tempat Penugasan">
                         </div>
                     </div>
                 </div>
@@ -35,7 +38,7 @@
                         <div class="form-group">
                             <label>Tanggal Dari</label>
                             <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                                <input required type="date" name="dari_tgl" class="form-control">
+                                <input required required type="date" name="dari_tgl" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -43,7 +46,7 @@
                         <div class="form-group">
                             <label>Tanggal Hingga</label>
                             <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                                <input required type="date" name="hingga_tgl" class="form-control">
+                                <input required required type="date" name="hingga_tgl" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -52,7 +55,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <textarea name="keterangan" class="form-control" placeholder="Keterangan ..."></textarea>
+                            <textarea required name="keterangan" class="form-control" placeholder="Keterangan ..."></textarea>
                         </div>
                     </div>
                 </div>
