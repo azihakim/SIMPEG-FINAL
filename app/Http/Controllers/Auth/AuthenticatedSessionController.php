@@ -37,10 +37,11 @@ class AuthenticatedSessionController extends Controller
         } elseif (Auth::user()->role === 'karyawan') {
             return redirect()->route('karyawan.dashboard');
         } elseif (Auth::user()->role === 'admin') {
-            return redirect()->route('karyawan.dashboard');
-        } else {
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
+            return redirect()->route('karyawan.admin');
+        } 
+        // else {
+        //     return redirect()->intended(RouteServiceProvider::HOME);
+        // }
     }
 
     /**
