@@ -39,7 +39,7 @@ class KaryawanController extends Controller
         ->where('role', 'pelamar')
         ->where('status', 'Diterima')
         ->get();
-
+        // $data = User::all();
         return view('karyawan.tambah', compact('data'));
     }
 
