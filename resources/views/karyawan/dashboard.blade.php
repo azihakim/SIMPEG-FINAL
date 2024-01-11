@@ -68,7 +68,7 @@
                                     <span class="badge bg-success">Aktif</span>
                                 @endif
                             </td>
-                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->name }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->telepon }}</td>
                             <td>{{ $item->jenis_kelamin }}</td>

@@ -18,17 +18,28 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
+                            <select id="pilihan_karyawan" name="user_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                                <option></option>   
+                                @foreach ($data as $item)
+                                <option value="{{ $item->user_id }}">{{ $item->name }}</option>   
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
+                            <label>NIK</label>
+                            <input type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
+                        </div>
+                    </div>
+                    {{-- <div class="col-sm-6">
+                        <div class="form-group">
                             <label>Alamat</label>
                             <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Username</label>
@@ -41,8 +52,8 @@
                             <input type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
                         </div>
                     </div>
-                </div>
-                <div class="row">
+                </div> --}}
+                {{-- <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Password</label>
@@ -57,12 +68,20 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
-                    <div class="col-sm-6">
+                    {{-- <div class="col-sm-6">
                         <div class="form-group">
                             <label>Telepon</label>
                             <input type="text" class="form-control" name="telepon" placeholder="Masukkan Telepon">
+                        </div>
+                    </div> --}}
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Tanggal Masuk Kerja</label>
+                            <div class="input-group date" id="reservationdate1" data-target-input="nearest">
+                                <input required type="date" name="tgl_masuk" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-6">

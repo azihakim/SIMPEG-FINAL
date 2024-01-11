@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('karyawans', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('password');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('status');
-            $table->string('nama');
-            $table->string('telepon');
+            // $table->string('nama');
+            // $table->string('telepon');
             $table->string('agama');
             $table->string('jenis_kelamin');
-            $table->string('alamat');
+            // $table->string('alamat');
             $table->string('nik');
             $table->string('tgl_masuk');
             $table->string('pendidikan_terakhir');

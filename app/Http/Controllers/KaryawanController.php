@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
@@ -12,7 +13,9 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::all();
+        // $karyawan = Karyawan::all();
+        $karyawan = User::join('karyawans', 'karyawans.user_id', '=', 'users.id')
+        ->get();
         return view('karyawan.dashboard', compact('karyawan'));
     }
     public function dashboard()
@@ -30,7 +33,14 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        //
+        // $data = User::join('phks','phks.user_id','=', 'users.id')->get();
+
+        $data = User::join('recruitments', 'recruitments.user_id', '=', 'users.id')
+        ->where('role', 'pelamar')
+        ->where('status', 'Diterima')
+        ->get();
+
+        return view('karyawan.tambah', compact('data'));
     }
 
     /**
@@ -39,18 +49,20 @@ class KaryawanController extends Controller
     public function store(Request $request)
     {
         $karyawan = new Karyawan;
-        $karyawan->nama = $request->nama;
-        $karyawan->alamat = $request->alamat;
-        $karyawan->username = $request->username;
         $karyawan->nik = $request->nik;
-        $karyawan->password = $request->password;
         $karyawan->tgl_masuk = $request->tgl_masuk;
-        $karyawan->telepon = $request->telepon;
         $karyawan->pendidikan_terakhir = $request->pendidikan_terakhir;
         $karyawan->agama = $request->agama;
         $karyawan->jabatan = $request->jabatan;
         $karyawan->jenis_kelamin = $request->jenis_kelamin;
         $karyawan->status = "Aktif";
+        $karyawan->user_id = $request->user_id;
+
+        $userId = $request->input('user_id');
+        $user = User::find($userId);
+        $user->update(['role' => 'karyawan']);
+
+
 
         $karyawan->save();
         return redirect('/karyawan')->with('status', 'Berhasil disimpan!');
