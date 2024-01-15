@@ -14,7 +14,7 @@ class RewardandPunishmentController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(Auth::user()->role == 'admin' || Auth::user()->role == 'manajer'){
             $data = User::join('rewardand_punishments','rewardand_punishments.user_id','=', 'users.id')->get();
             // $data = RewardandPunishment::join('users', 'users.id', '='. 'rewardandpunishments.user_id');
         }

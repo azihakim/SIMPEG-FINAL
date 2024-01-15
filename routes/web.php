@@ -107,63 +107,6 @@ Route::middleware(['auth','checkRole:pelamar'])->group(function()
     Route::get('/login', function () {
         return view('login');
     });
-    
-// Route::middleware(['auth','checkRole:karyawan'])->group(function () {
-
-//     // if (Route::middleware(['auth','checkRole:karyawan'])) {
-//     //     Route::get('/', function () {
-//     //         return view('dashboard');
-//     //     });
-//     // }
-//     Route::get('/tambah-RewardandPunishment', [RewardandPunishmentController::class, 'create']);
-//     // Route::get('/dashboard', function () {
-//     //     return view('dashboard');
-//     // })->name('karyawan.dashboard');
-
-
-//     Route::resource('karyawan', KaryawanController::class);
-//     Route::get('/tambah-karyawan', function () {
-//         return view('karyawan.tambah');
-//     });
-//     Route::put('/karyawan/{id}/status', [KaryawanController::class, 'status'])->name('karyawan.status');
-
-//     Route::resource('absensi', AbsensiController::class);
-//     Route::get('absensi-filter', [AbsensiController::class, 'filter'])->name('absensi.filter');
-
-//     Route::resource('phk', PhkController::class);
-//     Route::get('/tambah-phk', function () {
-//         return view('phk.tambah');
-//     });
-
-//     Route::resource('cutiizin', CutiIzinController::class);
-//     Route::get('/tambah-cutiizin', function () {
-//         return view('cutiizin.tambah');
-//     });
-//     Route::put('/cutiizin/{id}/status', [CutiIzinController::class, 'status'])->name('cutiizin.status');
-
-//     Route::resource('reward-punishment', RewardandPunishmentController::class);
-
-//     Route::resource('penugasan', PenugasanController::class);
-//     Route::get('/tambah-penugasan', [PenugasanController::class, 'create']);
-
-//     Route::resource('promosi', PromosiController::class);
-//     Route::get('/tambah-promosi', function () {
-//         return view('promosi.tambah');
-//     });
-
-
-//     Route::put('/cutiizin/{id}/status', [CutiIzinController::class, 'status'])->name('cutiizin.status');
-    
-
-//     Route::get('/login', function () {
-//         return view('login');
-//     });
-//     // Route::get('/dashboard', function () {
-//     //     return view('dashboard');
-//     // })->name('karyawan.dashboard');;
-
-    
-// });
 
 Route::get('/regist-calonkaryawan', function () {
     return view('recruitment.regist');

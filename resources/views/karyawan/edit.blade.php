@@ -19,13 +19,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input value="{{ $karyawan->nama }}" type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
+                            <input value="{{ $karyawan->user->name }}" type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input value="{{ $karyawan->alamat }}" type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">
+                            <input value="{{ $karyawan->user->alamat }}" type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Username</label>
-                            <input value="{{ $karyawan->username }}" type="text" class="form-control" name="username" placeholder="Masukkan Username">
+                            <input value="{{ $karyawan->user->username }}" type="text" class="form-control" name="username" placeholder="Masukkan Username">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -65,7 +65,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Telepon</label>
-                            <input value="{{ $karyawan->telepon }}" type="text" class="form-control" name="telepon" placeholder="Masukkan Telepon">
+                            <input value="{{ $karyawan->user->telepon }}" type="text" class="form-control" name="telepon" placeholder="Masukkan Telepon">
                         </div>
                     </div>
                     <div class="col-sm-6">

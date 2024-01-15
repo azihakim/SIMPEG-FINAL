@@ -38,6 +38,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('karyawanlogin.index');
         } elseif (Auth::user()->role === 'admin') {
             return redirect()->route('admin.index');
+        } elseif (Auth::user()->role === 'manajer') {
+            return redirect()->route('admin.index');
         } 
         else {
             return redirect()->intended(RouteServiceProvider::HOME);

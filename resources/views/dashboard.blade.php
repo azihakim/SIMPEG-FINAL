@@ -7,9 +7,13 @@
             @if(auth()->user()->role == 'karyawan')
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-info">
+                @if($karyawan->status == 'Non-Aktif')
+                    <div class="small-box bg-danger">
+                @else
+                    <div class="small-box bg-info">
+                @endif
                 <div class="inner">
-                    <h3>Aktif</h3>
+                    <h3>{{ $karyawan->status }}</h3>
 
                     <p>Status Karyawan</p>
                 </div>
@@ -21,9 +25,9 @@
             <!-- ./col -->
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-success">
+                <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>Karyawan</h3>
+                    <h3>{{ $karyawan->jabatan }}</h3>
 
                     <p>Jabatan</p>
                 </div>
@@ -32,12 +36,12 @@
                 </div>
                 </div>
             </div>
-            @else
+            @elseif(auth()->user()->role != 'manajer')
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>15</h3>
+                        <h3>{{ $karyawan }}</h3>
 
                         <p>Jumlah Karyawan</p>
                     </div>
@@ -51,7 +55,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>25</h3>
+                        <h3>{{ $pelamar }}</h3>
 
                         <p>Jumlah Pelamar</p>
                     </div>

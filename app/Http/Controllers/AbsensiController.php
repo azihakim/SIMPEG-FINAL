@@ -13,7 +13,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(Auth::user()->role == 'admin' || Auth::user()->role == 'manajer'){
             $absensi = Absensi::all();
         }
         else if(Auth::user()->role == 'karyawan'){

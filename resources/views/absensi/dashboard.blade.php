@@ -9,9 +9,12 @@
                     <div class="col-sm-10">
                         <h2>Absensi</h2>
                     </div>
-                    <div class="col-sm-2">
-                        <a class="btn btn-block btn-outline-primary" type="button" data-toggle="modal" data-target="#modal-default-1">Absensi</a>
-                    </div>
+                    @if (auth()->user()->role == 'admin')
+                        <div class="col-sm-2">
+                            <a class="btn btn-block btn-outline-primary" type="button" data-toggle="modal" data-target="#modal-default-1">Absensi</a>
+                        </div>
+                    @endif
+                    
                 </div>
             </div>
             <!-- /.card-header -->

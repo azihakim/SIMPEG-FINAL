@@ -9,9 +9,9 @@
                     <div class="col-sm-10">
                         <h2>Recruitment</h2>
                     </div>
-                    <div class="col-sm-2">
+                    {{-- <div class="col-sm-2">
                         <a type="button" class="btn btn-block btn-outline-primary" href="{{ url('tambah-phk') }}">Tambah Data</a>
-                    </div>
+                    </div> --}}
                 </div>
                 {{-- @endif --}}
             </div>
@@ -32,6 +32,7 @@
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
+                            @if (auth()->user()->role == 'admin')
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle fas fa-edit" data-toggle="dropdown" aria-expanded="false">
@@ -55,6 +56,7 @@
                                     </div>
                                 </div>
                             </td>
+                            @endif
                             <td>
                                 @if ($item->status == 'Diterima')
                                     <span class="badge bg-success">Diterima</span>
@@ -67,7 +69,9 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->telepon }}</td>
                             <td>{{ $item->alamat }}</td>
-                            <td>{{ $item->berkas }}</td>
+                            <td>
+                                <a href="{{ asset('storage/dokument/' . $item->berkas) }}" target="_blank" class="btn btn-outline-info">Cek berkas</a>
+                            </td>
                             <td>{{ $item->created_at }}</td>
                         </tr>
                     @endforeach

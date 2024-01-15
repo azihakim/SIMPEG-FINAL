@@ -10,9 +10,11 @@
                     <div class="col-sm-10">
                         <h2>Data Pengajuan Cuti/Izin</h2>
                     </div>
+                    @if (auth()->user()->role == 'admin')
                     <div class="col-sm-2">
                         <a type="button" class="btn btn-block btn-outline-primary" href="{{ url('tambah-cutiizin') }}">Tambah Data</a>
                     </div>
+                    @endif
                 </div>
                     
                 {{-- @endif --}}
@@ -23,7 +25,9 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        @if (auth()->user()->role == 'admin')
                         <th></th>
+                        @endif
                         <th>KARYAWAN</th>
                         <th>CUTI/IZIN</th>
                         <th>TANGGAL</th>
@@ -35,6 +39,7 @@
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
+                            @if (auth()->user()->role == 'admin')
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle fas fa-edit" data-toggle="dropdown" aria-expanded="false">
@@ -59,6 +64,7 @@
                                     </div>
                                 </div>
                             </td>
+                            @endif
                             <td>{{ $item->user->name }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td>{{ $item->created_at }}</td>
@@ -78,7 +84,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        @if (auth()->user()->role == 'admin')
                         <th></th>
+                        @endif
                         <th>KARYAWAN</th>
                         <th>CUTI/IZIN</th>
                         <th>TANGGAL</th>

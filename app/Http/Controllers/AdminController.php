@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Models\Recruitment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $karyawan = Karyawan::all();
-        return view('dashboard', compact('karyawan'));
+        $karyawan = Karyawan::where('status','Aktif')->count();
+        $pelamar = Recruitment::where('status','Pending')->count();
+        return view('dashboard', compact('karyawan', 'pelamar'));
     }
 }

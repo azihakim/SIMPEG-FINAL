@@ -21,6 +21,7 @@ class KaryawanController extends Controller
     public function dashboard()
     {
         $karyawan = Karyawan::all();
+        dd($karyawan);
         return view('dashboard', compact('karyawan'));
     }
     // public function admin()
@@ -99,15 +100,8 @@ class KaryawanController extends Controller
     public function update($id, Request $request)
     {
         $karyawan = Karyawan::find($id);
-        $karyawan->nama = $request->nama;
-        $karyawan->alamat = $request->alamat;
-        $karyawan->username = $request->username;
         $karyawan->nik = $request->nik;
-        if ($request->password != null) {
-            $karyawan->password = $request->password;
-        }
         $karyawan->tgl_masuk = $request->tgl_masuk;
-        $karyawan->telepon = $request->telepon;
         $karyawan->pendidikan_terakhir = $request->pendidikan_terakhir;
         $karyawan->agama = $request->agama;
         $karyawan->jabatan = $request->jabatan;
@@ -115,6 +109,17 @@ class KaryawanController extends Controller
         $karyawan->status = $request->status;
 
         $karyawan->save();
+
+        $user = User::find($karyawan->user_id);
+        $user->name = $request->nama;
+        $user->alamat = $request->alamat;
+        $user->username = $request->username;
+        $user->telepon = $request->telepon;
+        if ($request->password != null) {
+            $user->password = $request->password;
+        }
+        $user->save();
+
         return redirect('/karyawan')->with('status', 'Berhasil diubah!');
     }
 

@@ -15,9 +15,11 @@
                     <div class="col-sm-10">
                         <h2>Karyawan</h2>
                     </div>
+                    @if (auth()->user()->role == 'admin')
                     <div class="col-sm-2">
                         <a type="button" class="btn btn-block btn-outline-primary" href="{{ url('tambah-karyawan') }}">Tambah</a>
                     </div>
+                    @endif
                 </div>
                 {{-- @endif --}}
             </div>
@@ -26,7 +28,9 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        @if (auth()->user()->role == 'admin')
                         <th></th>
+                        @endif
                         <th>STATUS</th>
                         <th>NAMA</th>
                         <th>USERNAME</th>
@@ -40,6 +44,7 @@
                 <tbody>
                     @foreach ($karyawan as $item)
                         <tr>
+                            @if (auth()->user()->role == 'admin')
                             <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle fas fa-edit" data-toggle="dropdown" aria-expanded="false">
@@ -61,6 +66,7 @@
                                     </div>
                                 </div>
                             </td>
+                            @endif
                             <td>
                                 @if ($item->status == 'Non-Aktif')
                                     <span class="badge bg-danger">Non-Aktif</span>
@@ -81,7 +87,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        @if (auth()->user()->role == 'admin')
                         <th></th>
+                        @endif
                         <th>STATUS</th>
                         <th>NAMA</th>
                         <th>USERNAME</th>

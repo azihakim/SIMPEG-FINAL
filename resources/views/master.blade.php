@@ -95,6 +95,12 @@
                         class="brand-image img-circle elevation-3" style="opacity: .8">
                     <span class="brand-text font-weight-light">SIMPEG</span>
                 </a>
+            @elseif(auth()->user()->role == 'karyawan')
+                <a href="{{ url('/karyawanlogin') }}" class="brand-link">
+                    <img src="{{ asset('vendors/dist/img/123.jpeg') }}" alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">SIMPEG</span>
+                </a>
             @else
                  <a href="{{ url('dashboard') }}" class="brand-link">
                     <img src="{{ asset('vendors/dist/img/123.jpeg') }}" alt="AdminLTE Logo"
@@ -157,6 +163,50 @@
                                 <a href="{{ url('penugasan') }}" class="nav-link">
                                     <i class="nav-icon fas fa-edit"></i>
                                     <p>Penugasan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('promosi') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-bullhorn"></i>
+                                    <p>Promosi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('phk') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-minus"></i>
+                                    <p>PHK</p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->role == 'manajer')
+                            <li class="nav-item">
+                                <a href="{{ url('recruitment') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-plus"></i>
+                                    <p>Recruitment</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('karyawan') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>Karyawan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('absensi') }}" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>Absensi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('cutiizin') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-exclamation-triangle"></i>
+                                    <p>Pengajuan Cuti/Izin</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('reward-punishment') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-star"></i>
+                                    <p>Reward and Punishment</p>
                                 </a>
                             </li>
                             <li class="nav-item">

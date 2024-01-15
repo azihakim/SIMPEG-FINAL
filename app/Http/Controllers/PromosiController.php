@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Karyawan;
 use App\Models\Promosi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class PromosiController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(Auth::user()->role == 'admin' || Auth::user()->role == 'manajer'){
             $data = User::join('promosis','promosis.user_id','=', 'users.id')->get();
 
         }
@@ -32,7 +33,7 @@ class PromosiController extends Controller
      */
     public function create()
     {
-        $data = User::all();
+        $data = User::join('karyawans','karyawans.user_id','=', 'users.id')->get();
         return view('promosi.tambah', compact('data'));
     }
 
@@ -51,8 +52,13 @@ class PromosiController extends Controller
         $data->jabatan_lama = $request->jabatan_lama;
         $data->jabatan_baru = $request->jabatan_baru;
         $data->surat_rekomendasi = $file;
-        $data->save();
 
+        $karyawan = Karyawan::where('user_id', $request->user_id)->first();
+
+        $karyawan->jabatan = $request->jabatan_baru;
+        $karyawan->save();
+
+        $data->save();
         return redirect('/promosi');
     }
 

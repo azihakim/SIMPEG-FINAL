@@ -17,11 +17,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Karyawan</label>
-                            <select id="pilihan_karyawan" name="user_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                            <label for="pilihan_karyawan">Karyawan</label>
+                            <select id="pilihan_karyawan" onchange="updateInputValue_karyawan()" name="user_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
                                 <option></option>
                                 @foreach ($data as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    <option value="{{ $item->user_id }}" jabatan_lama="{{ $item->jabatan }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -38,14 +38,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Jabatan Lama</label>
-                            <input type="text" class="form-control" name="jabatan_lama" placeholder="Masukkan Jabatan Lama">
+                            <label for="jabatan_lama">Jabatan Lama</label>
+                            <input readonly type="text" value="" class="form-control" name="jabatan_lama" id="ip_jabatan_lama" placeholder="Masukkan Jabatan Lama">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Surat</label>
-                            <div class="">
+                            <div>
                                 <input name="surat_rekomendasi" type="file" class="-input" id="customFile">
                             </div>
                         </div>
@@ -55,7 +55,23 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Jabatan Baru</label>
-                            <input type="text" class="form-control" name="jabatan_baru" placeholder="Masukkan Jabatan Baru">
+                            <select id="pilihan_jabatan" name="jabatan_baru" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                                <option value=""></option>
+                                <option value="Dewan Direksi">Dewan Direksi</option>
+                                <option value="Kabag.AKU">Kabag.AKU</option>
+                                <option value="Kabag. Pengadaan">Kabag. Pengadaan</option>
+                                <option value="Kabag. SDM & Umum">Kabag. SDM & Umum</option>
+                                <option value="Kabag. SPI">Kabag. SPI</option>
+                                <option value="Kabag. Tanaman">Kabag. Tanaman</option>
+                                <option value="Kabag. Teknik">Kabag. Teknik</option>
+                                <option value="Kabag. Renbang">Kabag. Renbang</option>
+                                <option value="Adm. PIN">Adm. PIN</option>
+                                <option value="Adm. RL">Adm. RL</option>
+                                <option value="Adm. PPL">Adm. PPL</option>
+                                <option value="Adm. Muba">Adm. Muba</option>
+                                <option value="Adm. S.Aji">Adm. S.Aji</option>
+                                <option value="Adm. UPUL">Adm. UPUL</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -63,4 +79,13 @@
             </form>
         </div>
     </div>
+    
+<script>
+    function updateInputValue_karyawan(){
+        var select = document.getElementById("pilihan_karyawan");
+        var ip_jabatan_lama = document.getElementById("ip_jabatan_lama");
+
+        ip_jabatan_lama.value = select.options[select.selectedIndex].getAttribute('jabatan_lama');
+    }
+</script>
 @endsection

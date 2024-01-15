@@ -10,9 +10,11 @@
                     <div class="col-sm-10">
                         <h2>PHK</h2>
                     </div>
+                    @if (auth()->user()->role == 'admin')
                     <div class="col-sm-2">
                         <a type="button" class="btn btn-block btn-outline-primary" href="{{ url('tambah-phk') }}">Tambah Data</a>
                     </div>
+                    @endif
                 </div>
                     
                 {{-- @endif --}}

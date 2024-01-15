@@ -41,19 +41,28 @@ class DatabaseSeeder extends Seeder
             'password' => '123'
         ]);
 
+        // User::create([
+        //     'name' => 'pelamar',
+        //     'username' => 'pelamar',
+        //     'role' => 'pelamar',
+        //     'alamat' => 'palembang',
+        //     'telepon' => '081234567890',
+        //     'password' => '123'
+        // ]);
+
         User::create([
-            'name' => 'pelamar',
-            'username' => 'pelamar',
-            'role' => 'pelamar',
+            'name' => 'karyawan',
+            'username' => 'karyawan',
+            'role' => 'karyawan',
             'alamat' => 'palembang',
             'telepon' => '081234567890',
             'password' => '123'
         ]);
 
         User::create([
-            'name' => 'karyawan',
-            'username' => 'karyawan',
-            'role' => 'karyawan',
+            'name' => 'manajer',
+            'username' => 'manajer',
+            'role' => 'manajer',
             'alamat' => 'palembang',
             'telepon' => '081234567890',
             'password' => '123'

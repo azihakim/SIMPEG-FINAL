@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Karyawan;
 use App\Models\Phk;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class PhkController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(Auth::user()->role == 'admin' || Auth::user()->role == 'manajer'){
             $data = User::join('phks','phks.user_id','=', 'users.id')->get();
 
         }
@@ -41,16 +42,28 @@ class PhkController extends Controller
      */
     public function store(Request $request)
     {
+        // Create a new Phk instance
         $data = new Phk();
+        
+        // Handle file upload
         $ext = $request->surat->getClientOriginalExtension();
-        $file = "surat-".time().".".$ext;
+        $file = "surat-" . time() . "." . $ext;
         $request->surat->storeAs('public/dokument', $file);
-        // $data->nama = $request->nama;
+
+        // Set Phk data
         $data->user_id = $request->user_id;
         $data->surat = $file;
         $data->alasan = $request->alasan;
-        $data->save();
 
+        // Save Phk record
+        
+
+        // Update Karyawan status
+        $karyawan = Karyawan::where('user_id',$request->user_id)->first();
+        $karyawan->status = "Non-Aktif";
+        $karyawan->save();
+        $data->save();
+        // Redirect with success message
         return redirect()->route('phk.index')->with('success', 'Data berhasil ditambahkan');
     }
 

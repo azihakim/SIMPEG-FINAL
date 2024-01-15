@@ -14,7 +14,7 @@ class PenugasanController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(Auth::user()->role == 'admin' || Auth::user()->role == 'manajer'){
             $data = User::join('penugasans','penugasans.user_id','=', 'users.id')->get();
 
         }

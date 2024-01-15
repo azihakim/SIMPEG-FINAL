@@ -11,7 +11,7 @@ class PelamarController extends Controller
 {
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(Auth::user()->role == 'admin' || Auth::user()->role == 'manajer'){
             $data = Recruitment::all();
         }
         else if(Auth::user()->role == 'pelamar'){
