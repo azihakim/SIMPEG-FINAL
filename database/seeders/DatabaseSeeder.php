@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Absensi;
+use App\Models\Karyawan;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -66,6 +67,37 @@ class DatabaseSeeder extends Seeder
             'alamat' => 'palembang',
             'telepon' => '081234567890',
             'password' => '123'
+        ]);
+
+        Karyawan::create([
+            'user_id' => 1,
+            'status' => 'Aktif',
+            'agama' => 'Islam',
+            'jenis_kelamin' => 'Laki-laki',
+            'nik' => '1234567890',
+            'tgl_masuk' => '2021-01-01',
+            'pendidikan_terakhir' => 'SMA',
+            'jabatan' => 'Admin',
+        ]);
+        Karyawan::create([
+            'user_id' => 2,
+            'status' => 'Aktif',
+            'agama' => 'Islam',
+            'jenis_kelamin' => 'Laki-laki',
+            'nik' => '1234567890',
+            'tgl_masuk' => '2021-01-01',
+            'pendidikan_terakhir' => 'SMA',
+            'jabatan' => 'Karyawan',
+        ]);
+        Karyawan::create([
+            'user_id' => 3,
+            'status' => 'Aktif',
+            'agama' => 'Islam',
+            'jenis_kelamin' => 'Laki-laki',
+            'nik' => '1234567890',
+            'tgl_masuk' => '2021-01-01',
+            'pendidikan_terakhir' => 'SMA',
+            'jabatan' => 'Manajer',
         ]);
     }
 }

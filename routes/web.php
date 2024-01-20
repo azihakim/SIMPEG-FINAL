@@ -129,28 +129,33 @@ Route::resource('karyawanlogin', KaryawanloginController::class);
 Route::resource('admin', AdminController::class);
 Route::middleware(['auth'])->group(function () {
     // Route untuk pelamar
+Route::middleware(['auth','checkRole:pelamar'])->group(function () {
     Route::get('/dashboard', function () {
-        if (Auth::user()->role === 'pelamar') {
+        // if (Auth::user()->role === 'pelamar') {
             return redirect()->route('pengajuan.index');
-        }
-        return view('dashboard');
-    })->name('pengajuan.index');
-
+        // }
+        // return redirect()->route('karyawan.dashboard');
+    })->name('pelamar.dashboard');
+});
+Route::middleware(['auth','checkRole:karyawan'])->group(function () {
     // Route untuk karyawan
     Route::get('/dashboard', function () {
-        if (Auth::user()->role === 'karyawan') {
+        // if (Auth::user()->role === 'karyawan') {
             return redirect()->route('karyawanlogin.index');
-        }
-        return redirect()->route('dashboard');
+        // }
+        // return redirect()->route('karyawan.index');
     })->name('karyawan.dashboard');
-
-    // Route untuk admin
-    Route::get('/dashboard', function () {
-        if (Auth::user()->role === 'admin') {
-            return redirect()->route('admin.index');
-        }
-        return view('dashboard');
-    })->name('karyawan.admin');
 });
+
+Route::middleware(['auth','checkRole:admin'])->group(function () {
+    // Route untuk admin
+    // Route::get('/dashboard', function () {
+        // if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.index');
+        // }
+        // return redirect()->route('admin.index');
+    })->name('admin.dashboard');
+});
+
 
 require __DIR__.'/auth.php';

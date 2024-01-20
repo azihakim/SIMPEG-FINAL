@@ -5,37 +5,37 @@
     <div class="container-fluid">
         <div class="row">
             @if(auth()->user()->role == 'karyawan')
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-                @if($karyawan->status == 'Non-Aktif')
-                    <div class="small-box bg-danger">
-                @else
-                    <div class="small-box bg-info">
-                @endif
-                <div class="inner">
-                    <h3>{{ $karyawan->status }}</h3>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    @if($karyawan->status == 'Non-Aktif')
+                        <div class="small-box bg-danger">
+                    @else
+                        <div class="small-box bg-info">
+                    @endif
+                    <div class="inner">
+                        <h3>{{ $karyawan->status }}</h3>
 
-                    <p>Status Karyawan</p>
+                        <p>Status Karyawan</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
-                </div>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3>{{ $karyawan->jabatan }}</h3>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{ $karyawan->jabatan }}</h3>
 
-                    <p>Jabatan</p>
+                        <p>Jabatan</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
-                </div>
-                </div>
-            </div>
             @elseif(auth()->user()->role != 'manajer')
                 <div class="col-lg-3 col-6">
                     <!-- small box -->

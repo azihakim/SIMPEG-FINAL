@@ -62,6 +62,12 @@
   <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css') }}">
 </head>
 <body class="hold-transition register-page">
+  @if(session('success'))
+      <div class="alert alert-success">
+          {{ session('success') }}
+      </div>
+  @endif
+
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">

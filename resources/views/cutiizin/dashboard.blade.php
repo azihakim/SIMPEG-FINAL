@@ -10,7 +10,7 @@
                     <div class="col-sm-10">
                         <h2>Data Pengajuan Cuti/Izin</h2>
                     </div>
-                    @if (auth()->user()->role == 'admin')
+                    @if (auth()->user()->role == 'karyawan')
                     <div class="col-sm-2">
                         <a type="button" class="btn btn-block btn-outline-primary" href="{{ url('tambah-cutiizin') }}">Tambah Data</a>
                     </div>

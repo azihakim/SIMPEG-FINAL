@@ -9,7 +9,7 @@
                     <div class="col-sm-10">
                         <h2>Absensi</h2>
                     </div>
-                    @if (auth()->user()->role == 'admin')
+                    @if (auth()->user()->role == 'karyawan')
                         <div class="col-sm-2">
                             <a class="btn btn-block btn-outline-primary" type="button" data-toggle="modal" data-target="#modal-default-1">Absensi</a>
                         </div>

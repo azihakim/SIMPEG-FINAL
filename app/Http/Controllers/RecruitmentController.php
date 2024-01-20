@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recruitment;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,6 +56,20 @@ class RecruitmentController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required',
+            'username' => [
+                'required',
+                'string',
+                Rule::unique(User::class, 'username'), // Ensure username is unique in the users table
+            ],
+            'password' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        // If the validation passes, create and save the user
         $data = new User();
         $data->name = $request->name;
         $data->username = $request->username;
@@ -62,9 +77,9 @@ class RecruitmentController extends Controller
         $data->telepon = $request->telepon;
         $data->alamat = $request->alamat;
         $data->role = 'pelamar';
-        $data->save();
 
-        return redirect('/');
+        $data->save();
+        return redirect('/')->with('success', 'Berhasil mendaftar!');;
     }
 
     /**
