@@ -41,7 +41,6 @@
               </div>
             </form>
 
-            <button class="btn btn-primary">lokasi</button>
           </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
