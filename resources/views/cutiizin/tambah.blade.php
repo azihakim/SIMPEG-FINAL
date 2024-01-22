@@ -20,7 +20,7 @@
                             <label>Keterangan</label>
                             <div class="form-group clearfix">
                                 <div class="icheck-warning d-inline">
-                                    <input type="radio" name="keterangan" value="Cuti" id="radioDanger1">
+                                    <input required type="radio" name="keterangan" value="Cuti" id="radioDanger1">
                                     <label for="radioDanger1"> Cuti
                                     </label>
                                 </div>
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label>Dari Tanggal</label>
                             <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                                <input type="date" id="dari_tgl" name="dari_tgl" class="form-control">
+                                <input required type="date" id="dari_tgl" name="dari_tgl" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label>Hingga Tanggal</label>
                             <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                                <input type="date" id="hingga_tgl" name="hingga_tgl" class="form-control">
+                                <input required type="date" id="hingga_tgl" name="hingga_tgl" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Surat</label>
-                            <input name="surat" type="file" class="form-control-file" id="photoInput" name="photo" accept="image/*" required>
+                            <input required name="surat" type="file" class="form-control-file" id="photoInput" name="photo" accept="image/*" required>
                         </div>
                     </div>
                     <div class="col-sm-6">

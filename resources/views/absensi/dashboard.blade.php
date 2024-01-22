@@ -11,7 +11,7 @@
                     </div>
                     @if (auth()->user()->role == 'karyawan')
                         <div class="col-sm-2">
-                            <a class="btn btn-block btn-outline-primary" type="button" data-toggle="modal" data-target="#modal-default-1">Absensi</a>
+                            <a id="lokasi" class="btn btn-block btn-outline-primary" type="button" data-toggle="modal" data-target="#modal-default-1">Absensi</a>
                         </div>
                     @endif
                     
@@ -68,7 +68,20 @@
                     @foreach ($absensi as $item)
                         <tr>
                             <td>{{ $item->user->name }}</td>
-                            <td>{{ $item->lokasi }}</td>
+                            <td>
+                                @php
+                                    $lokasiArray = json_decode($item->lokasi, true);
+                                    $latitude = $lokasiArray['latitude'] ?? null;
+                                    $longitude = $lokasiArray['longitude'] ?? null;
+                                @endphp
+                                @if ($latitude && $longitude)
+                                    <a href="https://www.google.com/maps?q={{ $latitude }},{{ $longitude }}" target="_blank">
+                                        Lihat Lokasi
+                                    </a>
+                                @else
+                                    Lokasi tidak tersedia
+                                @endif
+                            </td>
                             <td>{{ $item->jenis }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>

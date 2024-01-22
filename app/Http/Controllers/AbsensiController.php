@@ -39,19 +39,25 @@ class AbsensiController extends Controller
     {
         $data = $request->all();
 
+        // Dapatkan latitude dan longitude dari data lokasi
+        $latitude = $data['latitude'];
+        $longitude = $data['longitude'];
+
+        // Lakukan validasi atau operasi lain yang dibutuhkan
+
+        // Lanjutkan dengan penyimpanan data
         $ext = $request->foto->getClientOriginalExtension();
-        $file = "foto-".time().".".$ext;
+        $file = "foto-" . time() . "." . $ext;
         $request->foto->storeAs('public/dokument', $file);
+
         $absen = new Absensi();
         $absen->user_id = auth()->user()->id;
-        $absen->lokasi = $data['lokasi'];
+        $absen->lokasi = json_encode(['latitude' => $latitude, 'longitude' => $longitude]);
         $absen->jenis = $data['jenis'];
         $absen->foto = $file;
         $absen->save();
 
         return redirect()->back();
-
-
     }
 
     /**

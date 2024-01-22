@@ -29,7 +29,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>NIK</label>
-                            <input type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
+                            <input required type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
                         </div>
                     </div>
                     {{-- <div class="col-sm-6">
@@ -87,21 +87,35 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Pendidikan Terakhir</label>
-                            <input type="text" class="form-control" name="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                            <select required name="pendidikan_terakhir" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                                <option></option>
+                                <option value="SMA">SMA</option>
+                                <option value="SMK">SMK</option>
+                                <option value="S1">S1</option>
+                                <option value="D3">D3</option>
+                            </select>   
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Agama</label>
-                            <input type="text" class="form-control" name="agama" placeholder="Masukkan Agama">
+                            <label>Agama</label>\
+                            <select required name="agama" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                                <option></option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen">Kristen</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Budha">Budha</option>
+                                <option value="Khonghuchu">Khonghuchu</option>
+                            </select>   
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Jabatan</label>
-                            <select id="pilihan_jabatan" name="jabatan" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                            <select required id="pilihan_jabatan" name="jabatan" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
                                 <option value=""></option>
                                 <option value="Dewan Direksi">Dewan Direksi</option>
                                 <option value="Kabag.AKU">Kabag.AKU</option>
@@ -125,7 +139,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Jenis Kelamin</label>
-                            <select name="jenis_kelamin" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                            <select required name="jenis_kelamin" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
                                 <option></option>
                                 <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>

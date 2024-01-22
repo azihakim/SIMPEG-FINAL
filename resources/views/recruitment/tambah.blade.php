@@ -38,7 +38,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>NIK</label>
-                            <input type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
+                            <input required type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
                         </div>
                     </div>
                 </div>
@@ -62,13 +62,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Telepon</label>
-                            <input type="text" class="form-control" name="telepon" placeholder="Masukkan Telepon">
+                            <input required type="text" class="form-control" name="telepon" placeholder="Masukkan Telepon">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Pendidikan Terakhir</label>
-                            <input type="text" class="form-control" name="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
+                            <input required type="text" class="form-control" name="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir">
                         </div>
                     </div>
                 </div>

@@ -70,8 +70,28 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <h1>DASHBOARD SIMPEG</h1>
+                    <h1>Selamat Datang</h1>
                 </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Visi & Misi Perusahaan</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Visi</label>
+                        <p>Perusahaan PT. Perkebunan Mitra Ogan menjadi perusahaan dalam bidang agro industri yang handal bertumpu pada produktivitas, kualitas produk dan pelayanan yang prima dengan kemampuan sendiri.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Visi</label>
+                        <p>Menjadi badan usaha dengan kinerja terbaik dalam bidang agribisnis, yang dikelola secara profesional dan inovatif dengan orientasi menjaga mutu hasil produksi Crude Palm Oil (CPO), Palm Kernel (PK) dan karet kering, agar mampu tumbuh dan berkembang untuk bersaing secara global, sehingga memenuhi harapan dan dapat memuaskan pihak-pihak yang berkepentingan (Stakeholders)</p>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
             </div>
         </div>
     </div>

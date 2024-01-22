@@ -18,7 +18,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Nama</label>
-                            <select id="pilihan_karyawan" name="user_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
+                            <select required id="pilihan_karyawan" name="user_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">
                                 <option></option>   
                                 @foreach ($data as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>   
@@ -29,7 +29,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Surat</label>
-                            <input type="file" class="form-control-file" id="photoInput" name="surat" required>
+                            <input required type="file" class="form-control-file" id="photoInput" name="surat" required>
                         </div>
                     </div>
                 </div>

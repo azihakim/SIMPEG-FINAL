@@ -157,5 +157,5 @@ Route::middleware(['auth','checkRole:admin'])->group(function () {
     })->name('admin.dashboard');
 });
 
-// push
+
 require __DIR__.'/auth.php';

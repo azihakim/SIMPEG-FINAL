@@ -36,7 +36,7 @@
       <form action="{{ route('recruitment.store') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input name="name" type="text" class="form-control" placeholder="Nama">
+          <input required name="name" type="text" class="form-control" placeholder="Nama">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input name="username" type="text" class="form-control" placeholder="Username">
+          <input required name="username" type="text" class="form-control" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input name="password" type="password" class="form-control" placeholder="Password">
+          <input required name="password" type="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input name="telepon" type="text" class="form-control" placeholder="Telepon">
+          <input required name="telepon" type="text" class="form-control" placeholder="Telepon">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input name="alamat" type="text" class="form-control" placeholder="Alamat">
+          <input required name="alamat" type="text" class="form-control" placeholder="Alamat">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-road"></span>
