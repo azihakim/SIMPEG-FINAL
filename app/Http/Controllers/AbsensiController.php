@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absensi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,15 +14,69 @@ class AbsensiController extends Controller
      */
     public function index()
     {
+        // Ambil waktu saat ini
+        $now = Carbon::now();
+
+        // Atur waktu mulai jam 8 pagi
+        $start = Carbon::now()->setHour(8)->setMinute(0)->setSecond(0);
+
+        // Atur waktu akhir jam 8.20 pagi
+        $end = Carbon::now()->setHour(8)->setMinute(20)->setSecond(0);
+
         if(Auth::user()->role == 'admin' || Auth::user()->role == 'manajer'){
             $absensi = Absensi::all();
+            $absensicek = Absensi::whereDate('created_at', $now->toDateString())
+                                    ->latest()
+                                    ->first();
+            $cekmasuk = Absensi::whereDate('created_at', $now->toDateString())
+                    ->where('jenis', 'Masuk')
+                    ->latest()
+                    ->first();
+
+            $cekpulang = Absensi::whereDate('created_at', $now->toDateString())
+                                ->where('jenis', 'Pulang')
+                                ->latest()
+                                ->first();
         }
         else if(Auth::user()->role == 'karyawan'){
             $userId = Auth::id();
 
             $absensi = Absensi::where('user_id', $userId)->with('user')->get();
+            // Ambil data absensi terakhir pada hari yang sama
+            $absensicek = Absensi::where('user_id', $userId)->with('user')
+                                    ->whereDate('created_at', $now->toDateString())
+                                    ->latest()
+                                    ->first();
+            $cekmasuk = Absensi::where('user_id', $userId)->with('user')
+                    ->whereDate('created_at', $now->toDateString())
+                    ->where('jenis', 'Masuk')
+                    ->latest()
+                    ->first();
+
+            $cekpulang = Absensi::where('user_id', $userId)->with('user')
+                                ->whereDate('created_at', $now->toDateString())
+                                ->where('jenis', 'Pulang')
+                                ->latest()
+                                ->first();
         }
-        return view('absensi.dashboard', compact('absensi'));
+
+        
+
+        // Jika ada data absensi terakhir pada hari yang sama
+        if ($absensicek) {
+            $latestAbsensiTime = Carbon::parse($absensicek->created_at);
+
+            // Periksa apakah waktu absensi terakhir berada di antara rentang waktu yang ditentukan
+            if ($latestAbsensiTime->between($start, $end)) {
+                return view('absensi.dashboard', compact('absensi', 'latestAbsensiTime', 'cekmasuk', 'cekpulang'));
+            }
+        }
+
+        $latestAbsensiTime = null;
+        return view('absensi.dashboard', compact('absensi', 'latestAbsensiTime', 'cekmasuk', 'cekpulang'));
+
+
+        
     }
 
     /**

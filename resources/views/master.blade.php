@@ -63,7 +63,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-user"></i>&nbsp;&nbsp;<strong>{{ Auth::user()->name }} - {{ Auth::user()->role }}</strong>
+          <i class="far fa-user"></i>&nbsp;&nbsp;<strong>{{ str_replace(['manajer', 'admin'], ['direktur', 'kabag. SPI'], Auth::user()->name ) }} - {{ str_replace(['manajer', 'admin'], ['direktur', 'kabag. SPI'], Auth::user()->role ) }}</strong>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-divider"></div>

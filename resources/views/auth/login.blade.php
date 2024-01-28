@@ -71,7 +71,7 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="#" class="h1"><b>SIMPEG</b></a>
+      <a href="#" class="h1"><b>PTP MO</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Login</p>

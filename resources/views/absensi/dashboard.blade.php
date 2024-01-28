@@ -10,11 +10,13 @@
                         <h2>Absensi</h2>
                     </div>
                     @if (auth()->user()->role == 'karyawan')
-                        <div class="col-sm-2">
-                            <a id="lokasi" class="btn btn-block btn-outline-primary" type="button" data-toggle="modal" data-target="#modal-default-1">Absensi</a>
-                        </div>
+                        
+                        @if ( $cekpulang == null) 
+                            <div class="col-sm-2">
+                                <a id="lokasi" class="btn btn-block btn-outline-primary" type="button" data-toggle="modal" data-target="#modal-default-1">Absensi</a>
+                            </div>
+                        @endif  
                     @endif
-                    
                 </div>
             </div>
             <!-- /.card-header -->
@@ -83,7 +85,15 @@
                                 @endif
                             </td>
                             <td>{{ $item->jenis }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>
+                                @if ( $latestAbsensiTime != null)
+                                    {{ $item->created_at }}    
+                                @elseif( $item->jenis == 'Masuk' )
+                                    {{ Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }} - Terlambat
+                                @else
+                                    {{ $item->created_at }}     
+                                @endif
+                            </td>
                             <td>
                                 <img src="{{ asset('storage/dokument/' . $item->foto) }}" alt="Deskripsi Gambar" style="max-width: 150px; max-height: 360px;">
                             </td>

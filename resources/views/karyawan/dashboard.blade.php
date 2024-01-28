@@ -52,7 +52,7 @@
                                     </button>
                                     <div class="dropdown-menu" role="menu" style="">
                                         <a class="dropdown-item" href="{{ route('karyawan.edit', $item->id) }}">Edit</a>
-                                        <form action="{{ route('karyawan.status', $item->id) }}" method="POST">
+                                        {{-- <form action="{{ route('karyawan.status', $item->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             @if ($item->status == 'Non-Aktif')
@@ -62,7 +62,7 @@
                                                 <input type="hidden" name="status" value="Non-Aktif">
                                                 <button class="dropdown-item" type="submit">Non-Aktifkan</button>
                                             @endif
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </div>
                             </td>
@@ -74,7 +74,7 @@
                                     <span class="badge bg-success">Aktif</span>
                                 @endif
                             </td>
-                            <td>{{ $item->name }}</td>
+                            <td>{{ str_replace(['manajer', 'admin'], ['direktur', 'kabag. SPI'], $item->name) }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->telepon }}</td>
                             <td>{{ $item->jenis_kelamin }}</td>

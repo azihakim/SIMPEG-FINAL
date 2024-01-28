@@ -11,6 +11,7 @@
             <form action="{{ route("absensi.store") }}" method="post" enctype="multipart/form-data">
               @csrf
                 <div class="modal-body">
+                  
                   <div class="form-group">
                       <label>Upload bukti foto</label>
                       <br>
@@ -18,14 +19,19 @@
                   </div>
                   <div class="form-group">
                     <label>Keterangan absen</label>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="jenis" value="Masuk">
-                      <label class="form-check-label">Masuk</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="jenis" value="Pulang">
-                      <label class="form-check-label">Pulang</label>
-                    </div>
+                    
+                    @if ( $cekmasuk == null)
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jenis" value="Masuk">
+                        <label class="form-check-label">Masuk</label>
+                      </div>
+                    @endif
+                    @if ( $cekpulang == null)
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jenis" value="Pulang">
+                        <label class="form-check-label">Pulang</label>
+                      </div>
+                    @endif
                   </div>
                   {{-- <div class="form-group">
                       <label>Lokasi</label>
